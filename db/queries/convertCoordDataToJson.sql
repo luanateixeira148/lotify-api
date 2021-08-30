@@ -4,6 +4,7 @@ FROM (
 FROM devices d
 JOIN tasks t ON d.id = t.device_id
 JOIN locations l ON t.location_id = l.id
+Limit 3
 ) t
 
 

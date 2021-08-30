@@ -1,24 +1,34 @@
 const router = require("express").Router();
+// const { getDistance }  = require('geolib');
+const { calculateDistance } = require('../db/queries/calculateDistance');
+
 
 module.exports = db => {
   router.get("/", (request, response) => {
-    db.query( //distance to be added to ORDER BY statement
-      `
-      SELECT *
-      FROM tasks
-      JOIN devices ON tasks.device_id = devices.id
-      JOIN locations ON tasks.location_id = locations.id
-      ORDER BY locations.name;
-    `
-    ).then(({ rows: tasks }) => {
-      response.json(tasks);
-    }).catch(err => {
-      console.log(err.message);
-      response.status(500).json({err:err.message});
-    });
+    db.query(`
+    SELECT t.id, t.description, d.latitude d_lat, d.longitude d_lon, l.latitude l_lat, l.longitude l_lon, l.name, l.address, t.status, l.logo_url
+    FROM devices d
+    JOIN tasks t ON d.id = t.device_id
+    JOIN locations l ON t.location_id = l.id
+    `)
+      .then((result) => {
+      // console.log(result.rows); //return when the promise is resolved to enable the value inside .then
+        const distanceArray = calculateDistance(result.rows).sort(function(a, b) {
+          if (a.distance < b.distance) return -1;
+          if (a.distance > b.distance) return 1;
+          return 0;
+        });
+
+        response.json(distanceArray);
+
+      })
+      .catch((err) => {
+        console.error(err.message);
+        return null;
+      });
   });
 
-  router.put("/", (request, response) => {
+  router.post("/", (request, response) => {
     console.log(request.body);
     const locationId = request.body.location_id;
     const description = request.body.description;
@@ -34,6 +44,7 @@ module.exports = db => {
     )
       .then(({ rows: tasks }) => {
         response.json(tasks[0]);
+
       })
       .catch(err => {
         console.log(err.message);
