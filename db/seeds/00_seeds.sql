@@ -56,16 +56,16 @@ VALUES
 -- ('Try out this ramen place', 8, 8);
 
 
-INSERT INTO tasks (description, location_id)
+INSERT INTO tasks (description, location_id, status)
 VALUES
-('Pick up prescriptions', 1),
-('Buy textbooks for the Web Design course', 2),
-('Buy birthday cake', 3),
-('Buy eye drops', 4),
-('Buy bluelight screen filter', 5),
-('Return Dress', 6),
-('Pick up milk', 7),
-('Try out this ramen place', 8);
+('Pick up prescriptions', 1, TRUE),
+('Buy textbooks for the Web Design course', 2, TRUE),
+('Buy birthday cake', 3, TRUE),
+('Buy eye drops', 4, TRUE),
+('Buy bluelight screen filter', 5, FALSE),
+('Return Dress', 6, FALSE),
+('Pick up milk', 7, FALSE),
+('Try out this ramen place', 8, FALSE);
 
 -- INSERT INTO tasks (description, location_name)
 -- SELECT
