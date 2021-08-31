@@ -2,11 +2,10 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8001;
+const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
 const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 
@@ -22,12 +21,6 @@ db.connect();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.set("view engine", "ejs");
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
-}));
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
