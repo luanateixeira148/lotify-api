@@ -4,6 +4,8 @@ const { calculateDistance } = require('../db/queries/calculateDistance');
 
 
 module.exports = db => {
+
+
   router.get("/", (request, response) => {
     db.query(`
     SELECT t.id, t.description, d.latitude d_lat, d.longitude d_lon, l.latitude l_lat, l.longitude l_lon, l.name, l.address, t.status, l.logo_url
@@ -28,6 +30,7 @@ module.exports = db => {
       });
   });
 
+
   router.post("/", (request, response) => {
     console.log(request.body);
     const locationId = request.body.location_id;
@@ -51,6 +54,42 @@ module.exports = db => {
         response.status(500).json({err:err.message});
       });
   });
+
+
+  router.put("/:id", (request, response) => {
+    const status = request.query.status;
+    const id = request.params.id;
+    // console.log('STATUS AND ID', status, id)
+    try {
+      db.query(`
+      UPDATE tasks
+      SET status = ${status}
+      WHERE id = ${id};`)
+      response.send(200)
+    } catch {
+      response.send(500)
+    }
+  });
+
+
+  router.put("/edit/:id", (request, response) => {
+    const id = request.params.id;
+    const description = request.query.description;
+    const locationId = request.query.location_id;
+    // console.log('STATUS AND ID', status, id)
+    try {
+      db.query(`
+      UPDATE tasks
+      SET
+      description = ${description}
+      location_id = ${locationId}
+      WHERE id = ${id};`)
+      response.send(200)
+    } catch {
+      response.send(500)
+    }
+  });
+
 
   router.delete("/:id", (request, response) => {
 
