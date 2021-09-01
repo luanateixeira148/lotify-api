@@ -9,10 +9,11 @@ const calculateDistance = function(arr) {
   let result = [];
   for (let obj of arr) {
     console.log(obj.id);
-    const distance = getDistance(
+    let distance = getDistance(
       { latitude: obj.d_lat, longitude: obj.d_lon},
       { latitude: obj.l_lat, longitude: obj.l_lon}
     );
+    distance = Math.round(distance / 1000 * 10) / 10;
     result.push({...obj, distance});
     // return result;
   }
