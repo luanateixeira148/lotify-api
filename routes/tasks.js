@@ -56,38 +56,41 @@ module.exports = db => {
   });
 
 
-  //PUT route to change the status
-  router.put("/:id", async (request, response) => {
-    const status = request.body.status;
-    const id = request.params.id;
-    // console.log('STATUS AND ID', status, id)
-    try {
-      await db.query(`
-      UPDATE tasks
-      SET status = $1
-      WHERE id = $2;`, [status, id])
-      response.send(200)
-    } catch {
-      response.send(500)
-    }
-  });
+//PUT route to change the status
+router.put("/:id", async (request, response) => {
+  const status = request.query.status;
+  const id = request.params.id;
+  // console.log('STATUS AND ID', status, id)
+  try {
+    await db.query(`
+    UPDATE tasks
+    SET status = $1
+    WHERE id = $2;`, [status, id])
+    response.send(200)
+  } catch {
+    response.send(500)
+  }
+});
 
 
-  //PUT route to edit description/location
-  router.put("/edit/:id", async (request, response) => {
-    const id = request.params.id;
-    const description = request.body.description;
-    const locationId = request.body.location_id;
-    try {
-      await db.query(`
-      UPDATE tasks
-      SET description = $1, location_id = $2
-      WHERE id = $3;`, [description, locationId, id])
-      response.send(200)
-    } catch {
-      response.send(500)
-    }
-  });
+//PUT route to edit description/location
+router.put("/edit/:id", async (request, response) => {
+  const id = request.params.id;
+  console.log('id: ', id)
+  const description = request.query.description;
+  console.log('description: ', description)
+  const locationId = request.query.location_id;
+  console.log('locationId: ', locationId)
+  try {
+    await db.query(`
+    UPDATE tasks
+    SET description = $1, location_id = $2
+    WHERE id = $3;`, [description, locationId, id])
+    response.send(200)
+  } catch {
+    response.send(500)
+  }
+});
 
 
   //DELETE route to delete a task
