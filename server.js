@@ -29,12 +29,14 @@ app.use(cors());
 const tasksRoutes = require("./routes/tasks");
 const devicesRoutes = require("./routes/devices");
 const locationsRoutes = require("./routes/locations");
+const bestRoute = require("./routes/bestroute");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/tasks", tasksRoutes(db));
 app.use("/api/devices", devicesRoutes(db));
 app.use("/api/locations", locationsRoutes(db));
+app.use("/api/bestroute", bestRoute(db));
 // app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
 

@@ -7,6 +7,9 @@ JOIN locations l ON t.location_id = l.id
 Limit 3
 ) t
 
+--  [{"id":1,"description":"Pick up prescription","d_lat":49.2773808,"d_lon":-123.1275059,"l_lat":49.2770978735687,"l_lon":-123.120039194011},        +
+--   {"id":2,"description":"Stock up on instant noodles","d_lat":49.2773808,"d_lon":-123.1275059,"l_lat":49.2805211655361,"l_lon":-123.118885222243}, +
+--   {"id":3,"description":"Buy birthday cake","d_lat":49.2773808,"d_lon":-123.1275059,"l_lat":49.2784591537399,"l_lon":-123.127878445836}]
 
 --using SQL
 --https://docs.microsoft.com/en-us/answers/questions/187492/tsql-calculating-distance-between-two-points-latit.html
