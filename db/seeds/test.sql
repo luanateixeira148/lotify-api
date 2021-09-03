@@ -21,5 +21,4 @@ VALUES
 --3
 ('Breka Bakery '||chr(38)||' Caf'||chr(233)||' (Davie)', '855 Davie St, Vancouver, BC V6Z 1B7', 49.2784591537399, -123.127878445836, 'https://www.google.ca/maps/dir/James+MCDoughal,+Howe+Street,+Vancouver,+BC/Breka+Bakery+'||chr(38)||'+Caf'||chr(233)||'+(Davie),+Davie+Street,+Vancouver,+BC/');
 
-
 --https://www.google.ca/maps/dir/James+MCDoughal,+Howe+Street,+Vancouver,+BC/Breka+Bakery+&+Café+(Davie),+Davie+Street,+Vancouver,+BC/
