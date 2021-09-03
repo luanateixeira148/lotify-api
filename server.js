@@ -2,6 +2,10 @@
 require('dotenv').config();
 
 // Web server config
+const http = require('http');
+const sockets = require('./webchat');
+
+
 const PORT       = process.env.PORT || 8080;
 const ENV        = process.env.ENV || "development";
 const express    = require("express");
@@ -13,6 +17,9 @@ const cors = require('cors');
 const { Pool } = require('pg');
 const dbParams = require('./lib/db.js');
 const db = new Pool(dbParams);
+
+const httpServer = http.Server(app);
+
 db.connect();
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -48,6 +55,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`);
+// app.listen(PORT, () => {
+//   console.log(`Example app listening on port ${PORT}`);
+// });
+
+// Handle webSocket connections
+sockets.start(httpServer);
+
+httpServer.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}/`);
 });
