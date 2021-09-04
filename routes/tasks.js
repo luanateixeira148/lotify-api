@@ -73,7 +73,7 @@ router.put("/:id", async (request, response) => {
 });
 
 
-//PUT route to edit description/location
+//PUT route to edit description/locations---
 router.put("/edit/:id", async (request, response) => {
   const id = request.params.id;
   console.log('id: ', id)
