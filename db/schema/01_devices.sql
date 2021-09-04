@@ -1,6 +1,6 @@
--- Drop and recreate Users table (Example)
-
+--drop existing tables
 DROP TABLE IF EXISTS tasks CASCADE;
+--create tables
 CREATE TABLE tasks (
   id SERIAL PRIMARY KEY NOT NULL,
   description VARCHAR(255) NOT NULL,

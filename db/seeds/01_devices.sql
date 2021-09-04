@@ -1,4 +1,3 @@
-
 INSERT INTO devices (latitude, longitude)
 VALUES
 (49.28116195176276, -123.13151283081807),

@@ -1,5 +1,4 @@
 const router = require("express").Router();
-// const { getDistance }  = require('geolib');
 const { calculateDistance } = require('../db/queries/calculateDistance');
 
 
@@ -33,7 +32,7 @@ module.exports = db => {
 
 //POST route to create a new task
   router.post("/", (request, response) => {
-    console.log(request.body);
+    // console.log(request.body);
     const locationId = request.body.location_id;
     const description = request.body.description;
     // const { description, locationId } = request.body;
@@ -42,7 +41,7 @@ module.exports = db => {
       `
       INSERT INTO tasks (description, location_id) VALUES ($1::text, $2::integer)
       RETURNING *
-    `,
+      `,
       [description, locationId]
     )
       .then(({ rows: tasks }) => {
@@ -60,7 +59,7 @@ module.exports = db => {
 router.put("/:id", async (request, response) => {
   const status = request.query.status;
   const id = request.params.id;
-  // console.log('STATUS AND ID', status, id)
+  // console.log('status and id:", status, id)
   try {
     await db.query(`
     UPDATE tasks
@@ -73,14 +72,11 @@ router.put("/:id", async (request, response) => {
 });
 
 
-//PUT route to edit description/locations---
+//PUT route to edit description and/or location
 router.put("/edit/:id", async (request, response) => {
   const id = request.params.id;
-  console.log('id: ', id)
   const description = request.query.description;
-  console.log('description: ', description)
   const locationId = request.query.location_id;
-  console.log('locationId: ', locationId)
   try {
     await db.query(`
     UPDATE tasks

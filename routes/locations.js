@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 module.exports = db => {
   router.get("/", (request, response) => {
-    db.query( //distance to be added to ORDER BY statement
+    db.query(
       `
       SELECT * from locations;
     `

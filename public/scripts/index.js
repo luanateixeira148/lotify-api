@@ -38,9 +38,7 @@
   };
 
 
-// 44, 66-68 (message, setMessage)
-// build a page with message state, make a button (clear/fill the state with some dummy data)
-
+// [44, 66-68] build a page with message state (message, setMessage), make a button (clear/fill the state with some dummy data)
 
   // Create socket and add listeners
   const setupSocket = function () {
@@ -62,7 +60,7 @@
     //   $("#messages").prepend(`<li>Broadcast: ${msg}</li>`);
     // });
 
-       // handle "private" events
+    // handle "private" events
     socket.on('private', function (msg) {
       $("#messages").prepend(`<li class="private">${msg}</li>`);
     });

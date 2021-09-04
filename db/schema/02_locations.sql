@@ -1,4 +1,3 @@
-
 --drop existing tables
 DROP TABLE IF EXISTS locations CASCADE;
 --create tables

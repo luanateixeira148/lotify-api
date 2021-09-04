@@ -1,8 +1,5 @@
 /** This file contains database helper functions **/
-
-// https://www.npmjs.com/package/geolib
 const { getDistance }  = require('geolib');
-
 
 // function that calculates for one of the records - loop thru the records.
 const calculateDistance = function(arr) {

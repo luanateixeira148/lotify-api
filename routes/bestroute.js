@@ -3,21 +3,8 @@ const { getDistance }  = require('geolib');
 const { calculateDistance } = require('../db/queries/calculateDistance');
 
 module.exports = db => {
-//   router.get("/", (request, response) => {
-//     db.query( //distance to be added to ORDER BY statement
-//       `
-//       SELECT * from tasks;
-//     `
-//     ).then(({ rows: bestroute }) => {
-//       response.json(bestroute);
-//     }).catch(err => {
-//       console.log(err.message);
-//       response.status(500).json({err:err.message});
-//     });
-//   });
 
-
-  //GET route to list all task items
+  //list all task items
   router.get("/", (request, response) => {
     db.query(`
     SELECT t.id, t.description, d.latitude d_lat, d.longitude d_lon, l.latitude l_lat, l.longitude l_lon, l.name, l.address, t.status, l.map_url
@@ -34,7 +21,7 @@ module.exports = db => {
         });
         // console.log(distanceArray);
         const sortedDistance = distanceArray.slice(0,3);
-        // response.json(sortedDistance);
+        // response.json(sortedDistance); // BSH B=0 S=1 H=2
         const myLocation = ({latitude: sortedDistance[0].d_lat, longitude: sortedDistance[0].d_lon});
         const locationB = ({latitude: sortedDistance[0].l_lat, longitude: sortedDistance[0].l_lon});
         const locationS = ({latitude: sortedDistance[1].l_lat, longitude: sortedDistance[1].l_lon});
@@ -81,7 +68,6 @@ module.exports = db => {
         // console.log(shortestId);
         const fullInfoArray = [];
 
-
         for (let i = 0; i < shortestId.length; i++) {
           if (shortestId[i] === 'B') {
             fullInfoArray.push(ItemB);
@@ -91,10 +77,10 @@ module.exports = db => {
             fullInfoArray.push(ItemH);
           }
         }
-        // console.log(fullInfoArray); //array of objects
-        // const httpsLink = "https://google.com";
-        // response.json(fullInfoArray);
-        //'https://www.google.com/maps/dir/49.2773808,-123.1275059/Breka+Bakery+%26+Caf%C3%A9+(Davie),+855+Davie+St,+Vancouver,+BC+V6Z+1B7/Shoppers+Drug+Mart,+1006+Homer+St,+Vancouver,+BC+V6B+2W9/H-Mart+Downtown,+590+Robson+St+#200,+Vancouver,+BC+V6B+2B7/'
+
+        // response.json(fullInfoArray); // console.log(fullInfoArray); //array of objects
+
+        // Format to convert to: 'https://www.google.com/maps/dir/49.2773808,-123.1275059/Breka+Bakery+%26+Caf%C3%A9+(Davie),+855+Davie+St,+Vancouver,+BC+V6Z+1B7/Shoppers+Drug+Mart,+1006+Homer+St,+Vancouver,+BC+V6B+2W9/H-Mart+Downtown,+590+Robson+St+#200,+Vancouver,+BC+V6B+2B7/'
 
         const fixed = 'https://www.google.com/maps/dir/';
         const myCoord = `${fullInfoArray[0].d_lat},${fullInfoArray[0].d_lon}/`;
@@ -102,14 +88,8 @@ module.exports = db => {
         const secondLocation = `${fullInfoArray[1].name}, ${fullInfoArray[1].address}/`;
         const thirdLocation = `${fullInfoArray[2].name}, ${fullInfoArray[2].address}/`;
         const concatenated = fixed.concat(myCoord).concat(firstLocation).concat(secondLocation).concat(thirdLocation);
-        console.log(concatenated);
         const output = concatenated.replace(/\s/g, '+').replace('&', '%26').replace('é', '%C3%A9');
         response.json(output);
-
-        //https://www.google.com/maps/dir/49.2773808,-123.1275059/Breka Bakery & Café (Davie), 855 Davie St, Vancouver, BC V6Z 1B7/Shoppers Drug Mart, 1006 Homer St, Vancouver, BC V6B 2W9/H-Mart Downtown, 590 Robson St #200, Vancouver, BC V6B 2B7/
-
-        // response.json(httpsLink);
-
       })
       .catch((err) => {
         console.error(err.message);
@@ -118,9 +98,3 @@ module.exports = db => {
   });
   return router;
 };
-
-
-// BSH
-// B=0
-// S=1
-// H=2

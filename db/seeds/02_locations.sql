@@ -1,4 +1,3 @@
-
 INSERT INTO locations (name, address, latitude, longitude, logo_url)
 VALUES
 ('Highgate Village Shopping Centre',
