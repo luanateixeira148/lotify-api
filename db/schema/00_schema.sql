@@ -17,7 +17,7 @@ CREATE TABLE locations (
   latitude FLOAT NOT NULL,
   longitude FLOAT NOT NULL,
   map_url VARCHAR(255),
-  -- logo_url VARCHAR(255) DEFAULT 'https://image.flaticon.com/icons/png/512/484/484167.png'
+  logo_url VARCHAR(255) DEFAULT 'https://image.flaticon.com/icons/png/512/484/484167.png'
 );
 
 CREATE TABLE tasks (
