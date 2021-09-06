@@ -30,7 +30,7 @@ VALUES
 --12
 ('Dollarama Station Square', 'Station Square, 6200 McKay Ave, Burnaby, BC V5H 4L7', 49.22681431076529, -123.00382808425319, ''),
 --13
-('Shoppers Drug Mart', '1006 Homer St, Vancouver, BC V6B 2W9', 49.2770978735687, -123.120039194011, ''),
+('Shoppers Drug Mart', '1202 W Pender St, Vancouver, BC V6E 2S9', 49.2888821128813, -123.1239119, ''),
 --14
 ('Shoppers Drug Mart', '586 Granville St, Vancouver, BC V6C 1X5', 49.2836597885791, -123.116115910585, ''),
 --15
@@ -38,13 +38,12 @@ VALUES
 --16
 ('Shoppers Drug Mart', '1125 Davie St, Vancouver, BC V6E 1N2', 49.280986978287, -123.131480644735, ''),
 --17
-('Shoppers Drug Mart', '748 Burrard St Unit 104 & 201, Vancouver, BC V6Z 2V6', 49.2770978735687, -123.120039194011, ''),
---18
-('Shoppers Drug Mart', '1202 W Pender St, Vancouver, BC V6E 2S9', 49.2888821128813, -123.1239119, '');
+('Shoppers Drug Mart', '748 Burrard St Unit 104 & 201, Vancouver, BC V6Z 2V6', 49.2770978735687, -123.120039194011, '');
+
 
 INSERT INTO tasks (description, location_id, status)
 VALUES
-('Pick up prescription', 1, FALSE),
+('Buy toothpaste', 1, FALSE),
 ('Stock up on instant noodles', 2, FALSE),
 ('Buy birthday cake', 3, FALSE),
 ('Try out this ramen place', 4, FALSE),
