@@ -15,17 +15,17 @@ Client-side and server-side are set in separate Git Repositories. This is the se
 
 ### Back-end
 
-The app requires a PostgreSQL database set up.
+The app requires a PostgreSQL database set up.\
 
 npm start
 
 ### Dependencies
 
-FontsAwesome
-Axios
-classnames
-React
-React-select
-SASS
-socket-io
+FontsAwesome\
+Axios\
+classnames\
+React\
+React-select\
+SASS\
+socket-io\
 Swiper
